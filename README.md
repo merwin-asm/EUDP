@@ -31,19 +31,16 @@ import EUDP
 def client_loop(server,cli):
   pass # do stuff
 
-server = pyE2EE.Server(port,client_loop) # client_loop will be called giving args server-obj and client 
+server = EUDP.EUDPServer(IP, Port, "key") # client_loop will be called giving args server-obj and client 
 
-server.TotalCons        # gives number of total connections
-server.clients          # is a list of all [client, AES-key-of-the-cli]
 server.send(client,msg) # sends msg
-server.recv(client)     # recvs msg
-server.sendall(msg)     # send all connected clients
-server.close(client)    # close a connection
+server.recv()     # recvs msg
+server.close()    # close connection
 ```
 
 ### Client Side
 ```python
-client = pyE2EE.Client(server_ip,port) 
+client = EUDP.EUDPClient(IP, Port, "key") 
 
 client.send(msg)  # send msg to server
 client.recv()     # recv msg from server
